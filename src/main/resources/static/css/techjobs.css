@@ -44,3 +44,7 @@ label {
 .centered {
     text-align: center;
 }
+
+.job-data{
+    font-style: italic;
+}

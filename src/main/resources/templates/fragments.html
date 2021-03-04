@@ -27,5 +27,46 @@
         </div>
     </div>
 
+    <div th:fragment="jobTable">
+    <th:block th:each="job : ${jobs}">
+        <table class="job-listing" style="width: 35rem">
+            <tbody>
+            <tr>
+                <td class="text-center fw-bold" style="width: 40%">ID</td>
+                <td th:text="${job.getId()}" class="job-data"></td>
+            </tr>
+            <tr>
+                <td class="text-center fw-bold">Name</td>
+                <td th:text="${job.getName()}" class="job-data"></td>
+            </tr>
+            <tr>
+                <td class="text-center fw-bold">Employer</td>
+                <td class="job-data" >
+                    <a th:text="${job.getEmployer()}" th:href="@{/list/jobs(column=employer,value=${job.getEmployer()})}"></a>
+                </td>
+            </tr>
+            <tr>
+                <td class="text-center fw-bold">Location</td>
+                <td class="job-data">
+                    <a th:text="${job.getLocation()}" th:href="@{/list/jobs(column=location,value=${job.getLocation()})}"></a>
+                </td>
+            </tr>
+            <tr>
+                <td class="text-center fw-bold">Position Type</td>
+                <td class="job-data">
+                    <a th:text="${job.getPositionType()}" th:href="@{/list/jobs(column=positionType,value=${job.getPositionType()})}"></a>
+                </td>
+            </tr>
+            <tr>
+                <td class="text-center fw-bold">Skill</td>
+                <td class="job-data">
+                    <a th:text="${job.getCoreCompetency()}" th:href="@{/list/jobs(column=coreCompetency,value=${job.getCoreCompetency()})}"></a>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </th:block>
+    </div>
+
 </body>
 </html>

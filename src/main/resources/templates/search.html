@@ -10,20 +10,29 @@
 
     <h1 th:text="${#strings.capitalizeWords(title)}"></h1>
 
-    <form th:action="@{/search/results}" method = "post">
+    <form th:action="@{/search/results}" th:object="${search}" method = "post">
         <h2>Search by:</h2>
 
         <p>
             <span th:each="column : ${columns}">
+                <th:block th:if="${type != null}">
+                    <input
+                        type="radio"
+                        name="searchType"
+                        th:id="${column.key}"
+                        th:value="${column.key}"
+                        th:checked="${column.key == type}"/>
+                </th:block>
+                <th:block th:if="${type == null}">
                 <input
                         type="radio"
                         name="searchType"
                         th:id="${column.key}"
                         th:value="${column.key}"
                         th:checked="${column.key == 'all'}"/>
+                </th:block>
                 <label th:for="${column.key}" th:text="${column.value}"></label>
             </span>
-
         </p>
 
         <p>
@@ -37,7 +46,7 @@
     <hr />
 
     <!-- TODO #4 - Loop over the search results to display all job fields. -->
-
+    <div th:replace="fragments :: jobTable"></div>
 </div>
 
 </body>
